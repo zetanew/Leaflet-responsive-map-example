@@ -18,21 +18,21 @@
         var map = L.map('map');
 
         // Define the corners of the rectangle
-        var southWest = L.latLng(36, 26);
-        var northEast = L.latLng(42, 45);
+        var southWest = L.latLng(36, 26); // SW
+        var northEast = L.latLng(42, 45); // NE 
         var bounds = L.latLngBounds(southWest, northEast);
 
-        // Fit the map to the rectangle bounds
-        map.fitBounds(bounds);
-        // disable dragging
-        map.dragging.disable();
+    
+        map.fitBounds(bounds); // fit in corners
+        
+        map.dragging.disable(); // no dragging
 
-        // Add a tile layer (OpenStreetMap tiles)
+        // tile layer (OpenStreetMap)
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
 
-        // Adjust the map view on window resize
+        // listen window resize
         window.addEventListener('resize', function() {
             map.fitBounds(bounds);
         });
