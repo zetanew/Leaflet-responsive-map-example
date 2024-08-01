@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Leaflet Map Example</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        #map {
+            height: 100vh;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        // Initialize the map
+        var map = L.map('map');
+
+        // Define the corners of the rectangle
+        var southWest = L.latLng(36, 26);
+        var northEast = L.latLng(42, 45);
+        var bounds = L.latLngBounds(southWest, northEast);
+
+        // Fit the map to the rectangle bounds
+        map.fitBounds(bounds);
+        // disable dragging
+        map.dragging.disable();
+
+        // Add a tile layer (OpenStreetMap tiles)
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Adjust the map view on window resize
+        window.addEventListener('resize', function() {
+            map.fitBounds(bounds);
+        });
+    </script>
+</body>
+</html>
